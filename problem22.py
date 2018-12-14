@@ -5,6 +5,9 @@ nameStr = nameStr.replace(',', ' ')
 nameStr = nameStr.replace("\"", '')
 nameList = sorted(nameStr.split())
 
+def getCharVal(c):
+    return ord(c) - 64
+
 def nameScore(name):
     score = 0
     for c in name:
