@@ -18,4 +18,6 @@ def nameScore(name):
     
 print(sum([nameScore(s) for s in nameList]))
 
+inFile.close()
+
 # Output: 871198282
