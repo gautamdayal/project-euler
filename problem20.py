@@ -7,3 +7,5 @@ def factorial(n):
         return n * factorial(n - 1) 
 
 print(sum([int(c) for c in str(factorial(100))]))
+
+# Output: 648
