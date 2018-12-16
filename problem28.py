@@ -1,4 +1,4 @@
-# Key to solving: top right number = square of ring number
+# Key to solving: top right number = square number ** 2
 
 def diagonal(n):
     sums = [1]
