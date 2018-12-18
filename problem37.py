@@ -26,7 +26,7 @@ def truncate(n):
 def isTruncable(n):
     hits = 0
     for i in truncate(n):
-        if not isPrime(i):
+        if not math2.isPrime(i):
             hits += 1
     if hits > 0:
         return False
