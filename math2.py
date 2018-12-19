@@ -1,6 +1,9 @@
 # returns True or False depending on the primality of n
 def isPrime(n):
-    return n == 2 or not any(n % i == 0 for i in range(2, (n // 2) + 1))
+    if n == 1:
+        return False
+    else:
+        return n==2 or not any(n%i==0 for i in range(2, (n//2)+1))
 
 # returns the nth fibonacci number 
 def fibonacci(n):
