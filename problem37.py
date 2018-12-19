@@ -32,3 +32,12 @@ def isTruncable(n):
         return False
     else:
         return True
+
+while len(L) < 11:
+    if isTruncable(i):
+        L.append(i)
+    i += 2
+    
+print(sum(L))
+
+# Output: 748317
