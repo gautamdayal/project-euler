@@ -1,4 +1,3 @@
-# incomplete code
 from math2 import *
 
 def truncate(n):
