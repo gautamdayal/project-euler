@@ -1,6 +1,6 @@
 inFile = open('names.txt', 'r')
 
-nameStr = f.readlines()[0]
+nameStr = inFile.readlines()[0]
 nameStr = nameStr.replace(',', ' ')
 nameStr = nameStr.replace("\"", '')
 nameList = sorted(nameStr.split())
