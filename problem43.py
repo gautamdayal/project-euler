@@ -9,7 +9,7 @@ def splice(n):
         d += 1
         u += 1
     return L
-
+# cool num = number with properties specified in question.
 def isCoolNum(n):
     L = splice(n)
     primes = [2, 3, 5, 7, 11, 13, 17]
