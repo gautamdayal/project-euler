@@ -35,12 +35,16 @@ def product(L):
 def mean(L):
     return sum(L) / len(L)
 
+# returns nth pentagonal number as an int
+def pentaNum(n):
+    return n * (3 * n - 1) // 2
+
 # computer the nth triangle number (using Gauss's formula)
 def triangleNumber(n):
     return int(n / 2 * (n + 1))
 
 # generator based on triangleNumber()
-def triGenerate():
+def triangleGen():
     i = 0
     while 1:
         yield triangleNumber(i)
@@ -140,3 +144,13 @@ def collatz(n):
 
 def merge(L):
     pass
+
+# returns a list of lists containing pairs that add up to a specified n
+def allSums(n):
+    L = []
+    a, b = n, 0
+    while a != 0:
+        L.append([a, b])
+        a -= 1
+        b += 1
+    return L
