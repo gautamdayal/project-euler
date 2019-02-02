@@ -1,3 +1,5 @@
+# Improvement: use file I/O for input num.
+
 def product(L):
     n = 1
     for i in L:
