@@ -1,13 +1,8 @@
 def worderize(n):
   output = None
-  tens_list = ['twenty', 'thirty', 
-  'forty', 'fifty', 'sixty', 
-  'seventy', 'eighty', 'ninety']
-  ones_list = ['one', 'two', 'three',
-  'four', 'five', 'six', 'seven', 'eight', 'nine']
-  teens = ['ten', 'eleven', 'twelve', 'thirteen',
-  'fourteen', 'fifteen', 'sixteen', 'seventeen',
-   'eighteen', 'nineteen']
+  tens_list = ['twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety']
+  ones_list = ['one', 'two', 'three','four', 'five', 'six', 'seven', 'eight', 'nine']
+  teens = ['ten', 'eleven', 'twelve', 'thirteen','fourteen', 'fifteen', 'sixteen', 'seventeen','eighteen', 'nineteen']
 
   string_n = str(n)
   if len(string_n) == 1:
