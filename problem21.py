@@ -12,4 +12,4 @@ for a in range(1,10000):
             print(a, b)
 """
 
-# ABOVE CODE IS WAYY TO SLOW. FIX.
+# ABOVE CODE IS WAYY TOO SLOW
