@@ -22,7 +22,7 @@ for year in range(1901, 2001):
         date = 0
         while date < month:
             date += 1
-            day = (day % 7)
+            day = day % 7
             day += 1
             if date == 1 and day == 6:
                 count += 1
