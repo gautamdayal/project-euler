@@ -5,6 +5,22 @@ def isPrime(n):
     else:
         return n==2 or not any(n%i==0 for i in range(2, (n//2)+1))
 
+# Implementation of the Sieve of Eratosthenes. Returns a list of primes until n
+def sieve(n):
+    d = {}
+    for i in range(n):
+        d[i]=0
+
+    for k in range(2, n):
+        for i in range(k, n, k):
+            d[i] += 1
+    L = []
+    for i in d:
+        if d[i] == 1:
+            L.append(i)
+
+    return L
+
 # returns the nth fibonacci number 
 def fibonacci(n):
     n1, n2 = 0, 1
@@ -76,35 +92,6 @@ def purify(L):
 # returns a boolean value depending on whether a number is a palindrome or not
 def isPalindrome(n):
     return str(n) == str(n)[::-1]
-
-# sieve of eratosthenes
-#
-#def sieve(n):
-#    L = [i for i in range(2, n + 1)]
-#    P = [i for i in range(2, len(L) // 2) if isPrime(i)]
-#    
-#    for n in P:
-#        for i in L:
-#            if n != i and i % n == 0:
-#                L.remove(i)
-#    
-#    return P
-
- # unfinished implementation
-
-#def sieve(n):
-#    L = [i for i in range(2, n + 1)]
-#    done = False
-#    while not done:
-#        p = L[0]
-#        for n in L[1:len(L)]:
-#            if n % p == 0:
-#                L.remove(n)
-#    return L
-
-
-def sieve(L):
-    return [n for n in L if isPrime(n)]
 
 # binary search implementation
 def binarySearch(L, x):
