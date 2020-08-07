@@ -1,3 +1,5 @@
+import math
+
 # returns True or False depending on the primality of n
 def isPrime(n):
     if n == 1:
@@ -5,7 +7,7 @@ def isPrime(n):
     else:
         return n==2 or not any(n%i==0 for i in range(2, (n//2)+1))
 
-# Implementation of the Sieve of Eratosthenes. Returns a list of primes until n
+# Implementation of the Sieve of Eratosthenes (also do binary exponentiation)
 def sieve(n):
     d = {}
     for i in range(n):
@@ -21,30 +23,73 @@ def sieve(n):
 
     return L
 
-# returns the nth fibonacci number 
+# Doing a naive version first - returns a dictionary with prime and degree
+def primeFactorize(n): #(lmao this is wrong. just use the residue to move on to the next pr)
+    if isPrime(n):
+        return({n:1})
+    factors = {}
+    primes = sieve(n//2 + 1) # add protection for n=p
+
+    for p in primes:
+        degree = 0
+        done = False
+        residue = n
+        while not done:
+            if residue % p == 0:
+                degree += 1
+            else:
+                factors[p] = degree
+                done = True
+            residue = int(residue / p)
+
+    result = {factor : factors[factor] for factor in factors if factors[factor] != 0}
+    return result
+
+# Returns sum of divisors of n
+def divisorSum(n):
+    factors = primeFactorize(n)
+    result = 1
+    for factor in factors:
+        result *= sum([factor ** i for i in range(factors[factor]+1)])
+    return result
+
+# Returns list of perfect numbers generated using primes up to n
+def perfectNumbers(n):
+    primes = sieve(n)
+    return [(2**(p-1))*(2**p - 1) for p in primes]
+
+# Returns whether n is abundant or not
+def isAbundant(n):
+    if divisorSum(n) - n >  n:
+        return True
+    else:
+        return False
+
+
+# returns the nth fibonacci number
 def fibonacci(n):
     n1, n2 = 0, 1
-    
+
     for i in range(0, n):
         n1, n2 = n2, n1 + n2
-        
+
     return n1
 
 # returns the factorial of n (recursive implementation)
 def factorial(n):
     if n < 0:
-        raise ValueError(f'Value must be postive. You entered {n}') 
+        raise ValueError(f'Value must be postive. You entered {n}')
     if n == 0:
         return 1
     else:
-        return n * factorial(n - 1) 
+        return n * factorial(n - 1)
 
 # returns product of numbers in a list
 def product(L):
     n = 1
     for i in L:
         n *= i
-    
+
     return n
 
 # returns the mean (as a float) of the elements in an array
@@ -64,7 +109,7 @@ def triangleGen():
     i = 0
     while 1:
         yield triangleNumber(i)
-    
+
 
 # returns a list of factors of number n
 def divisors(n):
@@ -73,12 +118,12 @@ def divisors(n):
     return L
 
 # returns number of divisors of a number (including 1)
-def divisorNum(n):
+def divNum(n):
     count = 0
     for i in range(1, n // 2 + 1):
         if n % i == 0:
             count += 1
-    
+
     return count + 1
 
 # returns a list with all duplicates removed
@@ -99,18 +144,18 @@ def binarySearch(L, x):
     found = False
     low = 0
     high = len(L) - 1
-    
+
     while not found:
         mid = (low + high) // 2
         if L[mid] == x:
             found = True
-            
+
         elif L[mid] > x:
             high = mid
-            
+
         elif L[mid] < x:
             low = mid
-    
+
     return found
 
 # returns length of a collatz chain
@@ -141,3 +186,7 @@ def allSums(n):
         a -= 1
         b += 1
     return L
+
+# returns the number of digits in a number 'n' (mathematical approach)
+def numDigits(n):
+    return int(math.log(n, 10)) + 1
