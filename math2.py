@@ -24,11 +24,16 @@ def sieve(n):
     return L
 
 # Doing a naive version first - returns a dictionary with prime and degree
-def primeFactorize(n): #(lmao this is wrong. just use the residue to move on to the next pr)
+# Added the ability to use a pre-sieved prime list (if don't want to compute repeatedly)
+def primeFactorize(n, pre_sieve=None): #(lmao this is wrong. just use the residue to move on to the next pr)
     if isPrime(n):
         return({n:1})
+
     factors = {}
-    primes = sieve(n//2 + 1) # add protection for n=p
+    if pre_sieve is None:
+        primes = sieve(n//2 + 1) # add protection for n=p
+    else:
+        primes = pre_sieve
 
     for p in primes:
         degree = 0
@@ -46,8 +51,8 @@ def primeFactorize(n): #(lmao this is wrong. just use the residue to move on to 
     return result
 
 # Returns sum of divisors of n
-def divisorSum(n):
-    factors = primeFactorize(n)
+def divisorSum(n, pre_sieve = None):
+    factors = primeFactorize(n, pre_sieve)
     result = 1
     for factor in factors:
         result *= sum([factor ** i for i in range(factors[factor]+1)])
@@ -59,8 +64,8 @@ def perfectNumbers(n):
     return [(2**(p-1))*(2**p - 1) for p in primes]
 
 # Returns whether n is abundant or not
-def isAbundant(n):
-    if divisorSum(n) - n >  n:
+def isAbundant(n, pre_sieve=None):
+    if divisorSum(n, pre_sieve) - n >  n:
         return True
     else:
         return False
